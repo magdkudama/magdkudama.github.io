@@ -1,0 +1,68 @@
+---
+layout: default
+title: Home
+description: "Magd Kudama Al-Mudaris's blog. Tech-related stuff. Java, PHP, Python, GoLang, automation..."
+---
+
+<p class="cmd">
+    <vue-typer
+        @completed='onTypedCat'
+        :text='["cat home.txt"]'
+        :repeat='0'
+        :shuffle='false'
+        initial-action='typing'
+        :pre-type-delay='150'
+        :type-delay='70'
+        :pre-erase-delay='2000'
+        :erase-delay='250'
+        erase-style='clear'
+        :erase-on-complete='false'
+        caret-animation='blink' />
+</p>
+
+<span v-if="showHead">
+    <p>Welcome to my blog! Thanks for visiting, and hope you like it!</p>
+    <p>As I spend so much time on my terminal, I thought why not making my own blog (which I don't even update frequently) a terminal?</p>
+    <p>Well, this is the result after half a day worth of work. Don't expect it to work great on all devices and browsers...</p>
+</span>
+
+<p class="cmd" v-if="showHead">
+    <vue-typer
+        @completed='onTypedHead'
+        :text='["head posts/*"]'
+        :repeat='0'
+        :shuffle='false'
+        initial-action='typing'
+        :pre-type-delay='150'
+        :type-delay='70'
+        :pre-erase-delay='2000'
+        :erase-delay='250'
+        erase-style='clear'
+        :erase-on-complete='false'
+        caret-animation='blink' />
+</p>
+
+<span v-if="showPosts">
+    {% for post in site.posts %}
+        <div class="post">
+            <h3>
+                <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+            </h3>
+            <p><em>{{ post.date | date: "%B %e, %Y" }}</em></p>
+            <p>{{ post.description }}</p>
+            <hr />
+        </div>
+    {% endfor %}
+    <p class="cmd cursor"></p>
+</span>
+
+<script>
+    new Vue({
+        mixins: [ window.fns.vueRoot ],
+        data: { showHead: false, showPosts: false },
+        methods: {
+            onTypedCat () { this.showHead = true },
+            onTypedHead () { this.showPosts = true }
+        }
+    })
+</script>

@@ -1,0 +1,68 @@
+---
+layout: default
+title: Not found
+---
+
+<p class="cmd">
+  <vue-typer
+      @completed='onTypedCmd'
+      :text='["sudo apt-get install mplayer -y"]'
+      :repeat='0'
+      :shuffle='false'
+      initial-action='typing'
+      :pre-type-delay='500'
+      :type-delay='70'
+      :pre-erase-delay='2000'
+      :erase-delay='250'
+      erase-style='clear'
+      :erase-on-complete='false'
+      caret-animation='blink' />
+</p>
+
+<span v-if="displayCmd">
+  <p>Extracting templates from packages: 100%</p>
+  <p>Selecting previously unselected package binfmt-support.</p>
+  <p>(Reading database ... 81000 files and directories currently installed.)</p>
+  <p>Unpacking xxx (from .../xxx.deb) ...</p>
+  <p>Selecting previously unselected package yyy.</p>
+  <p>Unpacking yyy (from .../yyy.deb) ...</p>
+  <p>Selecting previously unselected package zzz.</p>
+  <p>Unpacking zzz (from .../zzz.deb) ...</p>
+  <p>Selecting previously unselected package bbb.</p>
+  <p>Unpacking bbb (from .../bbb.deb) ...</p>
+  <p>Selecting previously unselected package ccc.</p>
+  <p>Unpacking ccc (from .../ccc.deb) ...</p>
+  <p>Done...</p>
+</span>
+
+<p class="cmd" v-if="displayCmd">
+  <vue-typer
+      @completed='onTypedPlayer'
+      :text='["mplayer -vo caca .videos/404.mov"]'
+      :repeat='0'
+      :shuffle='false'
+      initial-action='typing'
+      :pre-type-delay='500'
+      :type-delay='70'
+      :pre-erase-delay='2000'
+      :erase-delay='250'
+      erase-style='clear'
+      :erase-on-complete='false'
+      caret-animation='blink' />
+</p>
+
+<span v-if="displayVideo">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/jZOywn1qArI?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  <p class="cmd cursor"></p>
+</span>
+
+<script>
+  new Vue({
+      mixins: [ window.fns.vueRoot ],
+      data: { displayCmd: false, displayVideo: false },
+      methods: {
+          onTypedCmd () { this.displayCmd = true },
+          onTypedPlayer () { this.displayVideo = true }
+      }
+  })
+</script>

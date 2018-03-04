@@ -1,0 +1,39 @@
+---
+layout: default
+---
+
+<p class="cmd">
+    <vue-typer
+        @completed='onTypedCat'
+        :text='["cat posts/post.html"]'
+        :repeat='0'
+        :shuffle='false'
+        initial-action='typing'
+        :pre-type-delay='150'
+        :type-delay='70'
+        :pre-erase-delay='2000'
+        :erase-delay='250'
+        erase-style='clear'
+        :erase-on-complete='false'
+        caret-animation='blink' />
+</p>
+
+<div class="post" v-if="show">
+    <h1>{{ page.title }}</h1>
+    <em>{{ post.date }}</em>
+    <hr />
+    <div class="content">
+        {{ content }}
+    </div>
+</div>
+<p class="cmd cursor" v-if="show"></p>
+
+<script>
+    new Vue({
+        mixins: [ window.fns.vueRoot ],
+        data: { show: false },
+        methods: {
+            onTypedCat () { this.show = true },
+        }
+    })
+</script>

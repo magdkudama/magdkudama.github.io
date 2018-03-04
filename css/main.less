@@ -1,0 +1,287 @@
+@fontColor: #fff;
+@font: 'Inconsolata', monospace;
+@terminal: #000;
+@terminalBorder: #f9f9f9;
+
+@small: ~"only screen and (max-width: 768px)";
+
+.keyframes(@name; @arguments) {
+	@-moz-keyframes @name { @arguments(); }
+	@-webkit-keyframes @name { @arguments(); }
+	@keyframes @name { @arguments(); }
+}
+
+.keyframes(blink; {
+    0% { opacity: 1.0; }
+	50% { opacity: 0.0; }
+	100% { opacity: 1.0; }
+});
+
+ul.tree {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		margin-left: 10px;
+	}
+	li {
+		margin: 0;
+		padding: 0 7px;
+		line-height: 20px;
+		color: @fontColor;
+		border-left: 1px solid #fff;
+		&:last-child {
+			border-left: none;
+			&:before {
+				border-left: 1px solid #fff;
+			}
+		}
+		&:before {
+			position: relative;
+			top: -0.3em;
+			height: 1em;
+			width: 12px;
+			color: @fontColor;
+			border-bottom: 1px solid #fff;
+			content: "";
+			display: inline-block;
+			left: -7px;
+		}
+	}
+}
+.vue-typer {
+	color: @fontColor;
+}
+span.typed {
+	color: @fontColor !important;
+}
+img {
+	padding: 5px;
+}
+.post {
+	h3 {
+		margin-bottom: 10px;
+		font-size: 18px;
+		font-weight: 700;
+	}
+	h2 {
+		margin-bottom: 10px;
+		font-size: 20px;
+		font-weight: 700;
+	}
+
+	h1 {
+		margin-top: 20px;
+		margin-bottom: 20px;
+		font-size: 26px;
+		font-weight: 700;
+	}
+
+	p {
+		margin-bottom: 15px;
+		font-size: 16px;
+	}
+}
+
+img {
+	display: block;
+    max-width: 90%;
+    height: auto;
+}
+
+ul {
+	list-style-type: circle;
+	display: block;
+    list-style-type: disc;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 40px;
+}
+
+.home {
+	em {
+		font-size: 12px;
+	}
+}
+em {
+	font-style: italic;
+}
+html, body {
+	background-color: @terminal;
+	font-family: @font;
+	color: @fontColor;
+}
+a {
+	&:link {
+		text-decoration: underline;
+		color: @fontColor;
+	}
+	&:visited {
+		text-decoration: underline;
+		color: @fontColor;
+	}
+}
+table {
+	text-align: left;
+	border-collapse: separate;
+	border-spacing: 10px;
+}
+p {
+	margin-bottom: 5px;
+	font-size: 16px;
+}
+p.cmd {
+	&::before {
+		content: "[magd@blog ~]$ ";
+		font-size: 16px;
+	}
+}
+p.cursor {
+	&::after {
+		content: "";
+		display: inline-block;
+		background-color: @fontColor;
+		vertical-align: top;
+		width: 5px;
+		height: 15px;
+		-webkit-animation: blink 1s step-end infinite;
+		animation: blink 1s step-end infinite;
+	}
+}
+.terminal-window {
+	height: 100%;
+	float: left;
+	box-sizing: border-box;
+	padding: 10px;
+}
+.terminal-window {
+	&.menu {
+		width: 30%;
+		height: 100vh;
+		border-right: 10px solid @terminalBorder;
+		overflow: hidden;
+
+		@media @small {
+			width: 100%;
+			height: auto;
+			border-right: 0;
+			overflow: auto;
+		}
+	}
+	&.content {
+		width: 70%;
+		height: 100vh;
+		overflow: auto;
+		overflow-y: scroll;
+
+		@media @small {
+			width: 100%;
+			height: auto;
+			overflow: auto;
+		}
+	}
+}
+.about-me {
+	p {
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
+}
+
+figure.highlight {
+	margin: 10px 0;
+
+	pre {
+		padding: 5px;
+	}
+}
+
+/* Solarized Light 
+For use with Jekyll and Pygments
+http://ethanschoonover.com/solarized
+SOLARIZED HEX      ROLE
+--------- -------- ------------------------------------------
+base01    #586e75  body text / default code / primary content
+base1     #93a1a1  comments / secondary content
+base3     #fdf6e3  background
+orange    #cb4b16  constants
+red       #dc322f  regex, special keywords
+blue      #268bd2  reserved keywords
+cyan      #2aa198  strings, numbers
+green     #859900  operators, other keywords
+*/
+
+.highlight { background-color: #fdf6e3; color: #586e75 }
+.highlight .c { color: #93a1a1 } /* Comment */
+.highlight .err { color: #586e75 } /* Error */
+.highlight .g { color: #586e75 } /* Generic */
+.highlight .k { color: #859900 } /* Keyword */
+.highlight .l { color: #586e75 } /* Literal */
+.highlight .n { color: #586e75 } /* Name */
+.highlight .o { color: #859900 } /* Operator */
+.highlight .x { color: #cb4b16 } /* Other */
+.highlight .p { color: #586e75 } /* Punctuation */
+.highlight .cm { color: #93a1a1 } /* Comment.Multiline */
+.highlight .cp { color: #859900 } /* Comment.Preproc */
+.highlight .c1 { color: #93a1a1 } /* Comment.Single */
+.highlight .cs { color: #859900 } /* Comment.Special */
+.highlight .gd { color: #2aa198 } /* Generic.Deleted */
+.highlight .ge { color: #586e75; font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #dc322f } /* Generic.Error */
+.highlight .gh { color: #cb4b16 } /* Generic.Heading */
+.highlight .gi { color: #859900 } /* Generic.Inserted */
+.highlight .go { color: #586e75 } /* Generic.Output */
+.highlight .gp { color: #586e75 } /* Generic.Prompt */
+.highlight .gs { color: #586e75; font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #cb4b16 } /* Generic.Subheading */
+.highlight .gt { color: #586e75 } /* Generic.Traceback */
+.highlight .kc { color: #cb4b16 } /* Keyword.Constant */
+.highlight .kd { color: #268bd2 } /* Keyword.Declaration */
+.highlight .kn { color: #859900 } /* Keyword.Namespace */
+.highlight .kp { color: #859900 } /* Keyword.Pseudo */
+.highlight .kr { color: #268bd2 } /* Keyword.Reserved */
+.highlight .kt { color: #dc322f } /* Keyword.Type */
+.highlight .ld { color: #586e75 } /* Literal.Date */
+.highlight .m { color: #2aa198 } /* Literal.Number */
+.highlight .s { color: #2aa198 } /* Literal.String */
+.highlight .na { color: #586e75 } /* Name.Attribute */
+.highlight .nb { color: #B58900 } /* Name.Builtin */
+.highlight .nc { color: #268bd2 } /* Name.Class */
+.highlight .no { color: #cb4b16 } /* Name.Constant */
+.highlight .nd { color: #268bd2 } /* Name.Decorator */
+.highlight .ni { color: #cb4b16 } /* Name.Entity */
+.highlight .ne { color: #cb4b16 } /* Name.Exception */
+.highlight .nf { color: #268bd2 } /* Name.Function */
+.highlight .nl { color: #586e75 } /* Name.Label */
+.highlight .nn { color: #586e75 } /* Name.Namespace */
+.highlight .nx { color: #586e75 } /* Name.Other */
+.highlight .py { color: #586e75 } /* Name.Property */
+.highlight .nt { color: #268bd2 } /* Name.Tag */
+.highlight .nv { color: #268bd2 } /* Name.Variable */
+.highlight .ow { color: #859900 } /* Operator.Word */
+.highlight .w { color: #586e75 } /* Text.Whitespace */
+.highlight .mf { color: #2aa198 } /* Literal.Number.Float */
+.highlight .mh { color: #2aa198 } /* Literal.Number.Hex */
+.highlight .mi { color: #2aa198 } /* Literal.Number.Integer */
+.highlight .mo { color: #2aa198 } /* Literal.Number.Oct */
+.highlight .sb { color: #93a1a1 } /* Literal.String.Backtick */
+.highlight .sc { color: #2aa198 } /* Literal.String.Char */
+.highlight .sd { color: #586e75 } /* Literal.String.Doc */
+.highlight .s2 { color: #2aa198 } /* Literal.String.Double */
+.highlight .se { color: #cb4b16 } /* Literal.String.Escape */
+.highlight .sh { color: #586e75 } /* Literal.String.Heredoc */
+.highlight .si { color: #2aa198 } /* Literal.String.Interpol */
+.highlight .sx { color: #2aa198 } /* Literal.String.Other */
+.highlight .sr { color: #dc322f } /* Literal.String.Regex */
+.highlight .s1 { color: #2aa198 } /* Literal.String.Single */
+.highlight .ss { color: #2aa198 } /* Literal.String.Symbol */
+.highlight .bp { color: #268bd2 } /* Name.Builtin.Pseudo */
+.highlight .vc { color: #268bd2 } /* Name.Variable.Class */
+.highlight .vg { color: #268bd2 } /* Name.Variable.Global */
+.highlight .vi { color: #268bd2 } /* Name.Variable.Instance */
+.highlight .il { color: #2aa198 } /* Literal.Number.Integer.Long */

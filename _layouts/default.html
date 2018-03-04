@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="{{ page.description }}" >
+    <meta name="author" content="Magd Kudama Al-Mudaris">
+
+    <link rel="stylesheet" href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" crossorigin="anonymous">
+    <link href="//afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet">
+    <link href="/css/main.less" rel="stylesheet/less" type="text/css" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/3.0.0/less.min.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.min.js"></script>
+    <script src="https://unpkg.com/vue-typer/dist/vue-typer.min.js"></script>
+    <script>
+        window.fns = {}
+        window.fns.vueRoot = {
+            el: '#vue-root',
+            delimiters: ['${', '}'],
+            data: { lastLogin: new Date().toUTCString(), lines: [] },
+            components: {
+                'vue-typer': window.VueTyper.VueTyper
+            }
+        }
+    </script>
+
+    <title>{{ page.title }} - Magd Kudama Al-Mudaris</title>
+  </head>
+  <body>
+    <div id="vue-root">
+        <div class="terminal-window menu">
+            <p>Last login: ${lastLogin} on ttys002</p>
+            <p class="cmd">tree -L 2 blog</p>
+            <ul class="tree">
+                <li>
+                    <a href="{{ site.url }}">home.txt</a>
+                </li>
+                <li>posts
+                    <ul>
+                        {% for post in site.posts %}
+                            <li>
+                                <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                <li class="last">
+                    <a href="{{ site.url }}/about">about.txt</a>
+                </li>
+            </ul>
+            <p class="cmd cursor"></p>
+        </div>
+        <div class="terminal-window content">
+            <p>Last login: ${lastLogin} on ttys002</p>
+            {{content}}
+        </div>
+    </div>
+  </body>
+</html>

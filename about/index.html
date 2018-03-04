@@ -1,0 +1,119 @@
+---
+layout: default
+title: About me
+description: "Just a bit of information about me, Magd Kudama Al-Mudaris"
+---
+
+<p class="cmd">
+    <vue-typer
+        @completed='onTypedDisplay'
+        :text='["display .images/me.png"]'
+        :repeat='0'
+        :shuffle='false'
+        initial-action='typing'
+        :pre-type-delay='500'
+        :type-delay='70'
+        :pre-erase-delay='2000'
+        :erase-delay='250'
+        erase-style='clear'
+        :erase-on-complete='false'
+        caret-animation='blink' />
+</p>
+
+<span class="home" v-if="showDisplay">
+    <img src="http://www.gravatar.com/avatar/79c19818a93de361642787b926e73537.jpg?s=200" />
+</span>
+
+<p class="cmd" v-if="showDisplay">
+    <vue-typer
+        @completed='onTypedCat'
+        :text='["cat about.txt"]'
+        :repeat='0'
+        :shuffle='false'
+        initial-action='typing'
+        :pre-type-delay='200'
+        :type-delay='70'
+        :pre-erase-delay='2000'
+        :erase-delay='250'
+        erase-style='clear'
+        :erase-on-complete='false'
+        caret-animation='blink' />
+</p>
+
+<span v-if="showCat" class="about-me">
+    <p>My name is Magd Kudama. I'm a 28 years old passionate software developer living in London, UK. I really love my job, and try to learn and improve continuously!</p>
+    <p>I never have enough time to write stuff, but I really enjoy doing it. Now I've decided to throw my old blog and start from scratch, using Jekyll, and posting in English (sorry, probably it's really bad, but I'm improving it quickly).</p>
+    <p>I love to read books about software architecture and design patterns. I'm also an Emoji hater, but I use them at all times <i class="em em-smile"></i>!</p>
+    <p>You can follow me on <a href="https://twitter.com/magdkudama">Twitter</a>, or see my code on <a href="https://github.com/magdkudama">GitHub</a></p>
+</span>
+
+<p class="cmd" v-if="showCat">
+    <vue-typer
+        @completed='onTypedPs'
+        :text='["ps aux | sort -rn -k 5,6"]'
+        :repeat='0'
+        :shuffle='false'
+        initial-action='typing'
+        :pre-type-delay='300'
+        :type-delay='70'
+        :pre-erase-delay='2000'
+        :erase-delay='250'
+        erase-style='clear'
+        :erase-on-complete='false'
+        caret-animation='blink' />
+</p>
+
+<span v-if="showPs">
+    <table>
+        <thead>
+            <th>USER</th>
+            <th>PID</th>
+            <th>% KNOWLEDGE</th>
+            <th>YEARS</th>
+            <th>COMMAND</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>magdkudama</td>
+                <td>1121</td>
+                <td>100</td>
+                <td>9</td>
+                <td>PHP (Symfony)</td>
+            </tr>
+            <tr>
+                <td>magdkudama</td>
+                <td>23109</td>
+                <td>100</td>
+                <td>9</td>
+                <td>Java (Spring, Spring Boot)</td>
+            </tr>
+            <tr>
+                <td>magdkudama</td>
+                <td>96621</td>
+                <td>90</td>
+                <td>7</td>
+                <td>Javascript (React, VueJS)</td>
+            </tr>
+            <tr>
+                <td>magdkudama</td>
+                <td>33315</td>
+                <td>75</td>
+                <td>2</td>
+                <td>GoLang</td>
+            </tr>
+        </tbody>
+    </table>
+    <p class="cmd cursor"></p>
+</span>
+
+<script>
+    new Vue({
+        mixins: [ window.fns.vueRoot ],
+        data: { showDisplay: false, showCat: false, showPs: false },
+        methods: {
+            onTypedDisplay () { this.showDisplay = true },
+            onTypedCat () { this.showCat = true },
+            onTypedPs () { this.showPs = true }
+        }
+    })
+</script>
